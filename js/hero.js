@@ -114,7 +114,17 @@ function endTurn() {
   rounds--;
   document.getElementById("round-num").textContent = rounds;
   if (rounds < 1) {
-    // game over
+    finish();
+  }
+}
+
+function finish() {
+  var dialog = document.getElementById("dialog")
+  dialog.style.display = "block";
+  if (monster.alive == false) {
+    dialog.classList.add("win");
+  } else {
+    dialog.classList.add("lose");
   }
 }
 
@@ -137,13 +147,13 @@ function heroAttack() {
         monster.element.classList.remove("attacking");
         endTurn();
         if (hero.alive == false) {
-          // game over
+          finish();
         } else {
           document.getElementsByClassName("skill-block")[0].style.display = "block";
         }
       }, 500);
     } else {
-      // game over
+      finish();
     }
   }, 1100);
 }
