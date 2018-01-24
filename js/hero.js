@@ -108,6 +108,24 @@ function heroAttack() {
       hero.element.classList.remove("attacking");
     }, 500);
   }, 100);
+
+  setTimeout(function() {
+    if (monster.alive) {
+      monster.element.classList.add("attacking");
+      setTimeout(function() {
+        monster.attack(hero);
+        monster.element.classList.remove("attacking");
+        endTurn();
+        if (hero.alive == false) {
+          // game over
+        } else {
+          document.getElementsByClassName("skill-block")[0].style.display = "block";
+        }
+      }, 500);
+    } else {
+      // game over
+    }
+  }, 1100);
 }
 
 var hero = new Hero("Bernard", 130, 30);
