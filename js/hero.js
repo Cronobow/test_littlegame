@@ -89,12 +89,25 @@ function addSkillEvent() {
 addSkillEvent();
 
 var rounds = 10;
+
 function endTurn() {
   rounds--;
   document.getElementById("round-num").textContent = rounds;
   if (rounds < 1) {
     // game over
   }
+}
+
+function heroAttack() {
+  document.getElementsByClassName("skill-block")[0].style.display = "none";
+
+  setTimeout(function() {
+    hero.element.classList.add("attacking");
+    setTimeout(function() {
+      hero.attack(monster);
+      hero.element.classList.remove("attacking");
+    }, 500);
+  }, 100);
 }
 
 var hero = new Hero("Bernard", 130, 30);
