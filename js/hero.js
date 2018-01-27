@@ -165,7 +165,7 @@ function heroHeal() {
 
   setTimeout(function() {
     hero.heal();
-  }, 100);
+  }, 500);
 
   setTimeout(function() {
     monster.element.classList.add("attacking");
@@ -179,7 +179,7 @@ function heroHeal() {
         document.getElementsByClassName("skill-block")[0].style.display = "block";
       }
     }, 500);
-  }, 500);
+  }, 800);
 }
 
 function heroAttack() {
@@ -212,5 +212,17 @@ function heroAttack() {
   }, 1100);
 }
 
+
+document.onkeyup = function(event) {
+  var key = String.fromCharCode(event.keyCode);
+
+  if (key == "A" && document.getElementsByClassName("skill-block")[0].style.display != "none") {
+    heroAttack();
+  } else if (key == "D" && document.getElementsByClassName("skill-block")[0].style.display != "none") {
+    heroHeal();
+  }
+}
+
+
 var hero = new Hero("Bernard", 130, 30, 30);
-var monster = new Monster("Skeleton", 130, 10);
+var monster = new Monster("Skeleton", 130, 30);
